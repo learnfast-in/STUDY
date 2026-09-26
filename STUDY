@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alche 3D Studio Clone</title>
+  
+  <!-- Content Delivery Network (CDN) Link for Three.js Engine -->
+  <script src="https://cloudflare.com"></script>
+
+  <style>
+    :root {
+      --bg-color: #050506;
+      --text-main: #ffffff;
+      --text-muted: #707075;
+      --border-color: rgba(255, 255, 255, 0.07);
+      --font-mono: 'SF Mono', SFMono-Regular, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Fixed Background WebGL 3D Layer */
+    #webgl-canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Floating UI Typography Grid Layer */
+    .interface-layer {
+      position: relative;
+      z-index: 2;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 2.5rem;
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      margin-left: 2rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-muted);
+    }
+
+    section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 6rem 2.5rem;
+      border-bottom: 1px solid var(--border-color);
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5.5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 550px;
+      line-height: 1.7;
+    }
+
+    /* Alche Signature Structural Grid Layout */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1px;
+      background-color: var(--border-color);
+      margin-top: 3rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .grid-cell {
+      background-color: var(--bg-color);
+      padding: 3.5rem 2.5rem;
+      transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .grid-cell:hover {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .cell-num {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .grid-cell h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .grid-cell p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGL Layer Container -->
+  <div id="webgl-canvas-container"></div>
+
+  <!-- UI Layout Context -->
+  <div class="interface-layer">
+    
+    <nav>
+      <div class="brand-logo">ALCHE.STUDIO // REPLICA</div>
+      <div class="nav-links">
+        <a href="#projects">INDEX</a>
+        <a href="#about">ABOUT</a>
+      </div>
+    </nav>
+
+    <section id="hero">
+      <span class="section-label">[ OVERVIEW ]</span>
+      <h1>Interactive<br>Dimensions</h1>
+      <p class="hero-desc">PASTE YOUR OLD WEBSITE TEXT HERE. This structure mimics the clean grid array of the official website framework effortlessly.</p>
+    </section>
+
+    <section id="projects">
+      <span class="section-label">[ PORTFOLIO GRID ]</span>
+      <div class="content-grid">
+        
+        <!-- GRID ITEM 1 -->
+        <div class="grid-cell">
+          <span class="cell-num">// 001</span>
+          <h3>PROJECT TITLE ONE</h3>
+          <p>Replace this text with your old project details. The code maps everything perfectly into monochromatic, minimalist text rows.</p>
+        </div>
+
+        <!-- GRID ITEM 2 -->
+        <div class="grid-cell">
+          <span class="cell-num">// 002</span>
+          <h3>PROJECT TITLE TWO</h3>
+          <p>Replace this text with your secondary data. Hovering over these cells creates a fluid interactive block highlight.</p>
+        </div>
+
+        <!-- GRID ITEM 3 -->
+        <div class="grid-cell">
+          <span class="cell-num">// 003</span>
+          <h3>PROJECT TITLE THREE</h3>
+          <p>Add your final sections or structural information here to keep the aesthetic intact across various devices.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2026 ALCHE CLONE ENGINE</div>
+      <div>BUILT WITH OPEN-SOURCE WEBGL</div>
+    </footer>
+
+  </div>
+
+  <!-- Three.js Mathematical Particle Simulator Script -->
+  <script>
+    const wrapper = document.getElementById('webgl-canvas-container');
+    
+    // Core Engine Instances
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.z = 4.5;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    wrapper.appendChild(renderer.domElement);
+
+    // Mathematical Torus Array Vector Configuration
+    const dotCount = 3500;
+    const geometricBuffer = new THREE.BufferGeometry();
+    const coordinateArray = new Float32Array(dotCount * 3);
+
+    for(let k = 0; k < dotCount; k++) {
+      const step = (k / dotCount) * Math.PI * 2 * 3;
+      const pCoeff = 2;
+      const qCoeff = 3;
+      const radiusNoise = 1.3 + 0.25 * Math.sin(step * 6); // Organic rippling displacement matrix
+      
+      coordinateArray[k * 3]     = radiusNoise * Math.cos(pCoeff * step) * (2 + Math.cos(qCoeff * step)) * 0.45;
+      coordinateArray[k * 3 + 1] = radiusNoise * Math.sin(pCoeff * step) * (2 + Math.cos(qCoeff * step)) * 0.45;
+      coordinateArray[k * 3 + 2] = radiusNoise * Math.sin(qCoeff * step) * 0.55;
+    }
+
+    geometricBuffer.setAttribute('position', new THREE.BufferAttribute(coordinateArray, 3));
+
+    // Material Matrix Customization
+    const particleTexture = new THREE.PointsMaterial({
+      color: 0xffffff,
+      size: 0.011,
+      transparent: true,
+      opacity: 0.55,
+      blending: THREE.AdditiveBlending
+    });
+
+    const renderingMesh = new THREE.Points(geometricBuffer, particleTexture);
+    scene.add(renderingMesh);
+
+    // Cursor Tracking Interpolation Mechanics
+    let cursorX = 0, cursorY = 0;
+    let smoothX = 0, smoothY = 0;
+
+    window.addEventListener('mousemove', (mouseEvent) => {
+      cursorX = (mouseEvent.clientX / window.innerWidth) * 2 - 1;
+      cursorY = -(mouseEvent.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // Perpetual Execution Render Loop
+    function computeFrame() {
+      requestAnimationFrame(computeFrame);
+
+      // Dampening formulas for buttery-smooth kinetic tracking
+      smoothX += (cursorX - smoothX) * 0.045;
+      smoothY += (cursorY - smoothY) * 0.045;
+
+      renderingMesh.rotation.y = smoothX * 1.6 + (performance.now() * 0.00008);
+      renderingMesh.rotation.x = -smoothY * 1.4;
+
+      // Reacting to page scrolling
+      const currentScroll = window.scrollY / window.innerHeight;
+      camera.position.y = -currentScroll * 1.5;
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+    }
+    computeFrame();
+
+    // Responsive Display Handlers
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
